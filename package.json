@@ -1,0 +1,15 @@
+{
+  "name": "mutipart-parser-benchmark",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@hattip/adapter-node": "^0.0.31",
+    "@hattip/multipart": "^0.0.31",
+    "@hattip/router": "^0.0.31",
+    "@web3-storage/multipart-parser": "^1.0.0",
+    "busboy": "^1.6.0"
+  }
+}

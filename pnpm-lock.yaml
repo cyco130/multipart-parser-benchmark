@@ -1,0 +1,80 @@
+lockfileVersion: 5.4
+
+specifiers:
+  '@hattip/adapter-node': ^0.0.31
+  '@hattip/multipart': ^0.0.31
+  '@hattip/router': ^0.0.31
+  '@web3-storage/multipart-parser': ^1.0.0
+  busboy: ^1.6.0
+
+dependencies:
+  '@hattip/adapter-node': 0.0.31
+  '@hattip/multipart': 0.0.31
+  '@hattip/router': 0.0.31
+  '@web3-storage/multipart-parser': 1.0.0
+  busboy: 1.6.0
+
+packages:
+
+  /@hattip/adapter-node/0.0.31:
+    resolution: {integrity: sha512-v7dJCc2gwg+Bkdq20KsCNNThufLw9Nj+Hy39I0Ku8R8vzK4py2ajtGWYKJMza/63EWPgi01rEBKPCVlYS1tbQQ==}
+    dependencies:
+      '@hattip/core': 0.0.31
+      '@hattip/polyfills': 0.0.31
+    dev: false
+
+  /@hattip/compose/0.0.31:
+    resolution: {integrity: sha512-P1mv/RKvKsnYqZfbtEvYQ6MVT8eH98Im+Cwpot2Imhk0a70JDFW/EoIfeutiJOdANfsLqhZG9iTwc48ymMoqoA==}
+    dependencies:
+      '@hattip/core': 0.0.31
+    dev: false
+
+  /@hattip/core/0.0.31:
+    resolution: {integrity: sha512-nRW7TlLOVpPeF06mKWYIb1zlfGT7In7wWbobVm1TTWYRkjMnHtkbB5EaQ7yoJ5nXkowM5F9hcTLtDOYEkxQzTA==}
+    dev: false
+
+  /@hattip/headers/0.0.31:
+    resolution: {integrity: sha512-CTVEoT+1gKF9BFTUwTcsD+F0wYqXI/k6QiHl8fWXYd2DnKlLjdvKTGH8MNxykSF2F4G07L2fM2NVSN9iGhnrnQ==}
+    dependencies:
+      '@hattip/core': 0.0.31
+    dev: false
+
+  /@hattip/multipart/0.0.31:
+    resolution: {integrity: sha512-gU3a0oT3yxZnbmaGhh2lID5PLHMedkTghMf9wKxnxv/KcgVxaJ3Y7b0M+ZnMfwycBi9yT/L60TGTF4hrvt5BSQ==}
+    dependencies:
+      '@hattip/headers': 0.0.31
+    dev: false
+
+  /@hattip/polyfills/0.0.31:
+    resolution: {integrity: sha512-JdVEgwujI9accU7HkV0QRWSGwZr7ZuOWWJbXL74pLHjtHnoaJk+94+K9HGi4UOzuHCEKLCSOLj2AJFIDYo0csQ==}
+    dependencies:
+      '@hattip/core': 0.0.31
+      node-fetch-native: 1.0.2
+    dev: false
+
+  /@hattip/router/0.0.31:
+    resolution: {integrity: sha512-pbZQnE4oD3V4biDnoAXJPM3n0DvIe52FgnYJwSwagX6woM2ZNhiY3hISDfByz1xY3pPNOCgvNMEhU+7lKKpiYA==}
+    dependencies:
+      '@hattip/compose': 0.0.31
+      '@hattip/core': 0.0.31
+    dev: false
+
+  /@web3-storage/multipart-parser/1.0.0:
+    resolution: {integrity: sha512-BEO6al7BYqcnfX15W2cnGR+Q566ACXAT9UQykORCWW80lmkpWsnEob6zJS1ZVBKsSJC8+7vJkHwlp+lXG1UCdw==}
+    dev: false
+
+  /busboy/1.6.0:
+    resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
+    engines: {node: '>=10.16.0'}
+    dependencies:
+      streamsearch: 1.1.0
+    dev: false
+
+  /node-fetch-native/1.0.2:
+    resolution: {integrity: sha512-KIkvH1jl6b3O7es/0ShyCgWLcfXxlBrLBbP3rOr23WArC66IMcU4DeZEeYEOwnopYhawLTn7/y+YtmASe8DFVQ==}
+    dev: false
+
+  /streamsearch/1.1.0:
+    resolution: {integrity: sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==}
+    engines: {node: '>=10.0.0'}
+    dev: false
