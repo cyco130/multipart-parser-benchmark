@@ -1,11 +1,8 @@
-// @ts-check
 import { createRouter } from "@hattip/router";
-import { createMiddleware } from "@hattip/adapter-node";
+import { createRequestHandler } from "./adapter-deno.ts";
 import { streamMultipart } from "@web3-storage/multipart-parser";
 import { parseMultipartFormData } from "@hattip/multipart";
-import busboy from "busboy";
-import fs from "node:fs";
-import { createServer } from "node:http";
+import { serve } from "https://deno.land/std/http/server.ts";
 
 const router = createRouter();
 
@@ -18,16 +15,32 @@ router.post("/web3", async (ctx) => {
   const parts = streamMultipart(ctx.request.body, boundary);
   for await (const part of parts) {
     if (part.done) break;
-    await fs.promises.writeFile("web3.bin", part.data);
+    await Deno.writeFile(
+      "web3.bin",
+      new ReadableStream({
+        async pull(controller) {
+          try {
+            const { value, done } = await part.data.next();
+            if (done) {
+              controller.close();
+            } else {
+              controller.enqueue(value);
+            }
+          } catch (err) {
+            controller.error(err);
+          }
+        },
+      })
+    );
   }
 
   return new Response("File uploaded!");
 });
 
-router.post("/form", async (ctx) => {
+router.post("/deno", async (ctx) => {
   const fd = await ctx.request.formData();
   const file = fd.get("file");
-  await fs.promises.writeFile("form.bin", file.stream());
+  Deno.writeFile("deno.bin", file.stream());
 
   return new Response("File uploaded!");
 });
@@ -37,33 +50,15 @@ router.post("/hattip", async (ctx) => {
     maxFileSize: Infinity,
     maxTotalFileSize: Infinity,
     async handleFile(info) {
+      console.log(info);
+
       /** @type {any} */
       const { body } = info;
-      await fs.promises.writeFile("hattip.bin", body);
+      await Deno.writeFile("hattip.bin", body);
     },
   });
 
   return new Response("File uploaded!");
 });
 
-const hattipMiddleware = createMiddleware(router.buildHandler());
-
-createServer((req, res) => {
-  console.log(req.url, req.method);
-  if (req.url === "/busboy" && req.method === "POST") {
-    const bb = busboy({ headers: req.headers });
-    bb.on("file", async (_, file) => {
-      await fs.promises.writeFile("busboy.bin", file);
-    });
-
-    bb.on("close", () => {
-      res.end("File uploaded!");
-    });
-
-    req.pipe(bb);
-  } else {
-    hattipMiddleware(req, res);
-  }
-}).listen(3000, () => {
-  console.log("Listening on http://localhost:3000");
-});
+serve(createRequestHandler(router.buildHandler()), { port: 3000 });
